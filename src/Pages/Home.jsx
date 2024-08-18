@@ -1,19 +1,35 @@
 import React from 'react'
-import TopicBox from '../Components/TopicBox'
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
+
+  const [count, setCount]=useState(0);
+  const Navigate = useNavigate();
+  //let count = 0;
+
+  const increment = ()=>{
+    //count +=1;
+    setCount(count+1);
+  }
+
+  const decrement =()=>{
+    //count-=1;
+    setCount(count-1);
+  }
   return (
     <div>
       <h1>Homepage</h1>
-      <TopicBox food="Rice" price="Rs.450">
-        <radio>Yes</radio>
-      </TopicBox>
-      <TopicBox food="Kottu" price="Rs.350">
-        <button>Click Me</button>
-      </TopicBox>
-      <TopicBox food="Prawns" price="Rs.650">
-        <label>Hello</label><textarea></textarea>
-      </TopicBox>
+      <Button variant="primary" onClick={() => Navigate("/about")}>About
+      </Button>
+
+      <div>
+        <h1>My Counter</h1>
+        <p>This is my {count}</p>
+        <button onClick={decrement} className="button">-</button>
+        <button onClick={increment} className="button">+</button>
+      </div>
     </div>
   )
 }
